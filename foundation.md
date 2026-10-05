@@ -43,3 +43,4 @@ Owner: 1-2 people. Not one of the 6 feature modules — these are the shared roo
 
 ## Checkpoint A (end of this file's work)
 All 5 teammates pull this branch, run `mvn clean package` and `mvn spring-boot:run` successfully on their own machine before Phase 1 (M1-M5) starts. See also `m6-auth-dashboards.md`, whose Phase 0 section (`Staff` hierarchy, login) runs alongside this and is also a Checkpoint A blocker.
+lamdeptrai
