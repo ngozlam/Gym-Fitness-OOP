@@ -7,9 +7,9 @@ DELETE FROM membership_plans;
 DELETE FROM trainers;
 DELETE FROM staff;
 INSERT INTO staff (username, password_hash, full_name, role) VALUES
-('admin', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'Nguyen Van Admin', 'ADMIN'),
-('trainer1', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'Tran Van Manh', 'TRAINER'),
-('receptionist1', '$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'Le Thi Hoa', 'RECEPTIONIST');
+('admin', '$2a$10$tQjhiYfz/fcwXy9.rJswweFxN7ujGsE4Q0b29Fo8S6xQuNJe9HVP6', 'Nguyen Van Admin', 'ADMIN'),
+('trainer1', '$2a$10$tQjhiYfz/fcwXy9.rJswweFxN7ujGsE4Q0b29Fo8S6xQuNJe9HVP6', 'Tran Van Manh', 'TRAINER'),
+('receptionist1', '$2a$10$tQjhiYfz/fcwXy9.rJswweFxN7ujGsE4Q0b29Fo8S6xQuNJe9HVP6', 'Le Thi Hoa', 'RECEPTIONIST');
 
 -- Trainers
 INSERT INTO trainers (full_name, specialty, phone) VALUES
