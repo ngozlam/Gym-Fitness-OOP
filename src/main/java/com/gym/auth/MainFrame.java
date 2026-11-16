@@ -4,26 +4,30 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import com.gym.members.MemberPanel;
+import com.gym.members.MemberService;
+
 public class MainFrame extends JFrame {
 
     private final CurrentSession currentSession;
     private CardLayout cardLayout;
     private JPanel cardPanel;
+    private final MemberService memberService;
 
-    public MainFrame(CurrentSession currentSession) {
+    public MainFrame(CurrentSession currentSession, MemberService memberService) {
         this.currentSession = currentSession;
+        this.memberService = memberService;
 
         // Kiểm tra user đã login chưa
         if (!currentSession.isLoggedIn()) {
             JOptionPane.showMessageDialog(null, "Vui lòng đăng nhập trước!");
-            new LoginFrame(null, currentSession); // Sẽ fix sau
+            new LoginFrame(null, currentSession, memberService); // Sẽ fix sau
             this.dispose();
             return;
         }
@@ -54,11 +58,12 @@ public class MainFrame extends JFrame {
         // ...
 
         // Placeholder: hiển thị message để M1-M5 còn chưa làm
-        JPanel placeholderPanel = new JPanel();
-        placeholderPanel.add(new JLabel("Các module M1-M5 sẽ hiển thị ở đây"));
-        cardPanel.add(placeholderPanel, "placeholder");
-        cardLayout.show(cardPanel, "placeholder");
-
+        // JPanel placeholderPanel = new JPanel();
+        // placeholderPanel.add(new JLabel("Các module M1-M5 sẽ hiển thị ở đây"));
+        // cardPanel.add(placeholderPanel, "placeholder");
+        // cardLayout.show(cardPanel, "placeholder");
+        cardPanel.add(new MemberPanel(memberService), "members");
+        cardLayout.show(cardPanel, "members");
         add(cardPanel, BorderLayout.CENTER);
         setVisible(true);
     }

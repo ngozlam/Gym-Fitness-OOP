@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+@Service
 public class MemberService {
     private final MemberDao memberDao;
 

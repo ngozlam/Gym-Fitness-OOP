@@ -14,6 +14,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 
+import com.gym.members.MemberService;
+
 public class LoginFrame extends JFrame {
 
     private final AuthService authService;
@@ -23,11 +25,12 @@ public class LoginFrame extends JFrame {
     private JPasswordField passwordField;
     private JButton loginButton;
     private JLabel messageLabel;
+    private final MemberService memberService;
 
-    public LoginFrame(AuthService authService, CurrentSession currentSession) {
+    public LoginFrame(AuthService authService, CurrentSession currentSession,MemberService memberService) {
         this.authService = authService;
         this.currentSession = currentSession;
-
+        this.memberService = memberService;
         initUI();
     }
 
@@ -103,7 +106,7 @@ public class LoginFrame extends JFrame {
             // Chờ 1 giây rồi mở MainFrame
             Timer timer = new Timer(1000, e -> {
                 LoginFrame.this.dispose();
-                new MainFrame(currentSession);
+                new MainFrame(currentSession, memberService);
             });
             timer.setRepeats(false);
             timer.start();

@@ -11,6 +11,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import com.gym.auth.AuthService;
 import com.gym.auth.CurrentSession;
 import com.gym.auth.LoginFrame;
+import com.gym.members.MemberService;
 
 @SpringBootApplication
 public class GymApplication {
@@ -23,10 +24,10 @@ public class GymApplication {
                 .run(args);
         AuthService authService = ctx.getBean(AuthService.class);
         CurrentSession currentSession = ctx.getBean(CurrentSession.class);
-
+        MemberService memberService = ctx.getBean(MemberService.class);
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Gym Membership System");
-            new LoginFrame(authService, currentSession);
+            new LoginFrame(authService, currentSession, memberService);
            
             frame.pack();
         });
