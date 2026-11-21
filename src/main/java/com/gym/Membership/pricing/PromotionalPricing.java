@@ -6,10 +6,11 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+
 import com.gym.members.Member;
-import com.gym.membership.Model.MembershipPlan;
-import com.gym.membership.Model.Subscription;
-import com.gym.membership.Subscription_DAO.SubscriptionDao;
+import com.gym.membership.MembershipPlan;
+import com.gym.membership.Subscription;
+import com.gym.membership.SubscriptionDao;
 
 @Component("PROMOTIONAL")
 public class PromotionalPricing implements PricingStrategy {

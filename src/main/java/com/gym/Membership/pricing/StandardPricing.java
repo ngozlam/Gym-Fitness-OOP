@@ -5,8 +5,9 @@ import java.math.BigDecimal;
 
 import org.springframework.stereotype.Component;
 
+
 import com.gym.members.Member;
-import com.gym.membership.Model.MembershipPlan;
+import com.gym.membership.MembershipPlan;
 
 @Component("STANDARD")
 public class StandardPricing implements PricingStrategy {

@@ -7,8 +7,9 @@ import java.time.Period;
 
 import org.springframework.stereotype.Component;
 
+
 import com.gym.members.Member;
-import com.gym.membership.Model.MembershipPlan;
+import com.gym.membership.MembershipPlan;
 
 @Component("STUDENT_DISCOUNT")
 public class StudentDiscountPricing implements PricingStrategy {
