@@ -1,4 +1,4 @@
-package com.gym.Membership.Service;
+package com.gym.membership;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -7,13 +7,10 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gym.Membership.JDBCPlan_DAO.PlanDao;
-import com.gym.Membership.Model.MembershipPlan;
-import com.gym.Membership.Model.Subscription;
-import com.gym.Membership.Subscription_DAO.SubscriptionDao;
-import com.gym.Membership.pricing.PricingStrategy;
 import com.gym.members.Member;
 import com.gym.members.MemberDao;
+import com.gym.membership.pricing.PricingStrategy;
+
 
 
 @Service 

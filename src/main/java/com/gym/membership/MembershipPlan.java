@@ -1,4 +1,4 @@
-package com.gym.Membership.Model;
+package com.gym.membership;
 
 import java.math.BigDecimal;
 

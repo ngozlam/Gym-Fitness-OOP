@@ -1,15 +1,16 @@
 
-package com.gym.Membership.pricing;
+package com.gym.membership.pricing;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.gym.Membership.Model.MembershipPlan;
-import com.gym.Membership.Model.Subscription;
-import com.gym.Membership.Subscription_DAO.SubscriptionDao;
+
 import com.gym.members.Member;
+import com.gym.membership.MembershipPlan;
+import com.gym.membership.Subscription;
+import com.gym.membership.SubscriptionDao;
 
 @Component("PROMOTIONAL")
 public class PromotionalPricing implements PricingStrategy {

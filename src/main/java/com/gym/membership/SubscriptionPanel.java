@@ -1,4 +1,4 @@
-package com.gym.Membership.Swing;
+package com.gym.membership;
 
 
 
@@ -23,11 +23,6 @@ import javax.swing.table.DefaultTableModel;
 
 import org.springframework.stereotype.Component;
 
-import com.gym.Membership.JDBCPlan_DAO.PlanDao;
-import com.gym.Membership.Model.MembershipPlan;
-import com.gym.Membership.Model.Subscription;
-import com.gym.Membership.Service.SubscriptionService;
-import com.gym.Membership.Subscription_DAO.SubscriptionDao;
 
 @Component
 public class SubscriptionPanel extends JPanel {

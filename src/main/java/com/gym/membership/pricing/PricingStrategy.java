@@ -1,9 +1,10 @@
-package com.gym.Membership.pricing;
+package com.gym.membership.pricing;
 
 import java.math.BigDecimal;
 
 import com.gym.members.Member;
-import com.gym.Membership.Model.MembershipPlan;
+import com.gym.membership.MembershipPlan;
+
 
 public interface PricingStrategy {
 

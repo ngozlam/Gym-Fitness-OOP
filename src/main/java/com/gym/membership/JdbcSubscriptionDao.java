@@ -1,4 +1,4 @@
-package com.gym.Membership.Subscription_DAO;
+package com.gym.membership;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -11,8 +11,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
-
-import com.gym.Membership.Model.Subscription;
 
 @Repository 
 public class JdbcSubscriptionDao implements SubscriptionDao {

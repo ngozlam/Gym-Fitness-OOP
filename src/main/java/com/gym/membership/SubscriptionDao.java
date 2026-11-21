@@ -1,9 +1,7 @@
-package com.gym.Membership.Subscription_DAO;
+package com.gym.membership;
 
 import java.util.List;
 import java.util.Optional;
-
-import com.gym.Membership.Model.Subscription;
 
 public interface SubscriptionDao {
     

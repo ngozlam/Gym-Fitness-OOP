@@ -1,4 +1,4 @@
-package com.gym.Membership.Swing;
+package com.gym.membership;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -30,9 +30,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
-
-import com.gym.Membership.JDBCPlan_DAO.PlanDao;
-import com.gym.Membership.Model.MembershipPlan;
 
 @Component
 @Lazy //
