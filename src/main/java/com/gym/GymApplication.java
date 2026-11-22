@@ -14,6 +14,7 @@ import com.gym.members.MemberService;
 import com.gym.membership.PlanDao;
 import com.gym.membership.SubscriptionDao;
 import com.gym.membership.SubscriptionService;
+import com.gym.payments.PaymentService;
 
 
 @SpringBootApplication
@@ -31,10 +32,11 @@ public class GymApplication {
         SubscriptionService subscriptionService = ctx.getBean(SubscriptionService.class);
         PlanDao planDao = ctx.getBean(PlanDao.class);
         SubscriptionDao subscriptionDao = ctx.getBean(SubscriptionDao.class);
-
+        PaymentService paymentService = ctx.getBean(PaymentService.class);
+        
         SwingUtilities.invokeLater(() -> {
             //JFrame frame = new JFrame("Gym Membership System");
-            new LoginFrame(authService, currentSession, memberService, subscriptionService, planDao, subscriptionDao);
+            new LoginFrame(authService, currentSession, memberService, subscriptionService, planDao, subscriptionDao, paymentService);
            
             //frame.pack();
         });

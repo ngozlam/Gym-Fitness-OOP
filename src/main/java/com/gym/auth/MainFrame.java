@@ -17,6 +17,8 @@ import com.gym.membership.PlanPanel;
 import com.gym.membership.SubscriptionDao;
 import com.gym.membership.SubscriptionPanel;
 import com.gym.membership.SubscriptionService;
+import com.gym.payments.PaymentPanel;
+import com.gym.payments.PaymentService;
 
 
 public class MainFrame extends JFrame {
@@ -29,20 +31,21 @@ public class MainFrame extends JFrame {
     private final PlanDao planDao;
     private final SubscriptionDao subscriptionDao;
     private final AuthService authService;
+    private final PaymentService paymentService;
 
-    public MainFrame( CurrentSession currentSession, MemberService memberService, SubscriptionService subscriptionService, PlanDao planDao, SubscriptionDao subscriptionDao, AuthService authService) {
+    public MainFrame( CurrentSession currentSession, MemberService memberService, SubscriptionService subscriptionService, PlanDao planDao, SubscriptionDao subscriptionDao, AuthService authService, PaymentService paymentService) {
         this.authService = authService;
         this.currentSession = currentSession;
         this.memberService = memberService;
         this.subscriptionService = subscriptionService;
         this.planDao = planDao;
         this.subscriptionDao = subscriptionDao;
-        
+        this.paymentService = paymentService;
 
         // Kiểm tra user đã login chưa
         if (!currentSession.isLoggedIn()) {
             JOptionPane.showMessageDialog(null, "Vui lòng đăng nhập trước!");
-            new LoginFrame(authService, currentSession, memberService,subscriptionService,planDao,subscriptionDao); 
+            new LoginFrame(authService, currentSession, memberService,subscriptionService,planDao,subscriptionDao,paymentService); 
             this.dispose();
             return;
         }
@@ -81,6 +84,7 @@ public class MainFrame extends JFrame {
         cardLayout.show(cardPanel, "members");
         cardPanel.add(new PlanPanel(planDao), "plans");
         cardPanel.add(new SubscriptionPanel(subscriptionService, subscriptionDao, planDao), "subscriptions");
+        cardPanel.add(new PaymentPanel(paymentService), "payments");
         add(cardPanel, BorderLayout.CENTER);
         setVisible(true);
     }
@@ -127,7 +131,7 @@ public class MainFrame extends JFrame {
         currentSession.logout();
         this.dispose();
         new LoginFrame(authService, currentSession, memberService,
-                   subscriptionService, planDao, subscriptionDao);
+                   subscriptionService, planDao, subscriptionDao, paymentService);
         JOptionPane.showMessageDialog(null, "Đã logout thành công");
     }
 }

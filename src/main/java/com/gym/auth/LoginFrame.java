@@ -18,6 +18,7 @@ import com.gym.members.MemberService;
 import com.gym.membership.PlanDao;
 import com.gym.membership.SubscriptionDao;
 import com.gym.membership.SubscriptionService;
+import com.gym.payments.PaymentService;
 
 public class LoginFrame extends JFrame {
 
@@ -32,15 +33,17 @@ public class LoginFrame extends JFrame {
     private final SubscriptionService subscriptionService;
     private final PlanDao planDao;
     private final SubscriptionDao subscriptionDao;
+    private final PaymentService paymentService;
 
         public LoginFrame(AuthService authService, CurrentSession currentSession,MemberService memberService,
-            SubscriptionService subscriptionService, PlanDao planDao, SubscriptionDao subscriptionDao){
+            SubscriptionService subscriptionService, PlanDao planDao, SubscriptionDao subscriptionDao, PaymentService paymentService) {
         this.authService = authService;
         this.currentSession = currentSession;
         this.memberService = memberService;
         this.subscriptionService = subscriptionService;
         this.planDao = planDao;
         this.subscriptionDao = subscriptionDao;
+        this.paymentService = paymentService;
         initUI();
     }
 
@@ -116,7 +119,7 @@ public class LoginFrame extends JFrame {
             // Chờ 1 giây rồi mở MainFrame
             Timer timer = new Timer(1000, e -> {
                 LoginFrame.this.dispose();
-                new MainFrame( currentSession, memberService, subscriptionService, planDao, subscriptionDao, authService);
+                new MainFrame( currentSession, memberService, subscriptionService, planDao, subscriptionDao, authService, paymentService);
             });
             timer.setRepeats(false);
             timer.start();
