@@ -1,6 +1,5 @@
 package com.gym;
 
-import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import org.springframework.boot.WebApplicationType;
@@ -12,6 +11,10 @@ import com.gym.auth.AuthService;
 import com.gym.auth.CurrentSession;
 import com.gym.auth.LoginFrame;
 import com.gym.members.MemberService;
+import com.gym.membership.PlanDao;
+import com.gym.membership.SubscriptionDao;
+import com.gym.membership.SubscriptionService;
+
 
 @SpringBootApplication
 public class GymApplication {
@@ -25,11 +28,15 @@ public class GymApplication {
         AuthService authService = ctx.getBean(AuthService.class);
         CurrentSession currentSession = ctx.getBean(CurrentSession.class);
         MemberService memberService = ctx.getBean(MemberService.class);
+        SubscriptionService subscriptionService = ctx.getBean(SubscriptionService.class);
+        PlanDao planDao = ctx.getBean(PlanDao.class);
+        SubscriptionDao subscriptionDao = ctx.getBean(SubscriptionDao.class);
+
         SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame("Gym Membership System");
-            new LoginFrame(authService, currentSession, memberService);
+            //JFrame frame = new JFrame("Gym Membership System");
+            new LoginFrame(authService, currentSession, memberService, subscriptionService, planDao, subscriptionDao);
            
-            frame.pack();
+            //frame.pack();
         });
     }
 }

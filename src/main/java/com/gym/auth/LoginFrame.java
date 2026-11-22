@@ -15,6 +15,9 @@ import javax.swing.JTextField;
 import javax.swing.Timer;
 
 import com.gym.members.MemberService;
+import com.gym.membership.PlanDao;
+import com.gym.membership.SubscriptionDao;
+import com.gym.membership.SubscriptionService;
 
 public class LoginFrame extends JFrame {
 
@@ -26,11 +29,18 @@ public class LoginFrame extends JFrame {
     private JButton loginButton;
     private JLabel messageLabel;
     private final MemberService memberService;
+    private final SubscriptionService subscriptionService;
+    private final PlanDao planDao;
+    private final SubscriptionDao subscriptionDao;
 
-    public LoginFrame(AuthService authService, CurrentSession currentSession,MemberService memberService) {
+        public LoginFrame(AuthService authService, CurrentSession currentSession,MemberService memberService,
+            SubscriptionService subscriptionService, PlanDao planDao, SubscriptionDao subscriptionDao){
         this.authService = authService;
         this.currentSession = currentSession;
         this.memberService = memberService;
+        this.subscriptionService = subscriptionService;
+        this.planDao = planDao;
+        this.subscriptionDao = subscriptionDao;
         initUI();
     }
 
@@ -106,7 +116,7 @@ public class LoginFrame extends JFrame {
             // Chờ 1 giây rồi mở MainFrame
             Timer timer = new Timer(1000, e -> {
                 LoginFrame.this.dispose();
-                new MainFrame(currentSession, memberService);
+                new MainFrame( currentSession, memberService, subscriptionService, planDao, subscriptionDao, authService);
             });
             timer.setRepeats(false);
             timer.start();
