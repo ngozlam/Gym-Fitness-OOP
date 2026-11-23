@@ -14,11 +14,13 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 
+import com.gym.attendance.AttendanceService;
 import com.gym.members.MemberService;
 import com.gym.membership.PlanDao;
 import com.gym.membership.SubscriptionDao;
 import com.gym.membership.SubscriptionService;
 import com.gym.payments.PaymentService;
+
 
 public class LoginFrame extends JFrame {
 
@@ -34,9 +36,10 @@ public class LoginFrame extends JFrame {
     private final PlanDao planDao;
     private final SubscriptionDao subscriptionDao;
     private final PaymentService paymentService;
-
-        public LoginFrame(AuthService authService, CurrentSession currentSession,MemberService memberService,
-            SubscriptionService subscriptionService, PlanDao planDao, SubscriptionDao subscriptionDao, PaymentService paymentService) {
+    private final AttendanceService attendanceService;
+        
+    public LoginFrame(AuthService authService, CurrentSession currentSession,MemberService memberService,
+            SubscriptionService subscriptionService, PlanDao planDao, SubscriptionDao subscriptionDao, PaymentService paymentService, AttendanceService attendanceService) {
         this.authService = authService;
         this.currentSession = currentSession;
         this.memberService = memberService;
@@ -44,6 +47,7 @@ public class LoginFrame extends JFrame {
         this.planDao = planDao;
         this.subscriptionDao = subscriptionDao;
         this.paymentService = paymentService;
+        this.attendanceService = attendanceService;
         initUI();
     }
 
@@ -119,7 +123,7 @@ public class LoginFrame extends JFrame {
             // Chờ 1 giây rồi mở MainFrame
             Timer timer = new Timer(1000, e -> {
                 LoginFrame.this.dispose();
-                new MainFrame( currentSession, memberService, subscriptionService, planDao, subscriptionDao, authService, paymentService);
+                new MainFrame( currentSession, memberService, subscriptionService, planDao, subscriptionDao, authService, paymentService, attendanceService);
             });
             timer.setRepeats(false);
             timer.start();
