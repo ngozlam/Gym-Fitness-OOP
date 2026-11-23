@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 
 import com.gym.attendance.AttendancePanel;
 import com.gym.attendance.AttendanceService;
+import com.gym.members.MemberDao;
 import com.gym.members.MemberPanel;
 import com.gym.members.MemberService;
 import com.gym.membership.PlanDao;
@@ -21,6 +22,8 @@ import com.gym.membership.SubscriptionPanel;
 import com.gym.membership.SubscriptionService;
 import com.gym.payments.PaymentPanel;
 import com.gym.payments.PaymentService;
+import com.gym.trainers.TrainerPanel;
+import com.gym.trainers.TrainerService;
 
 public class MainFrame extends JFrame {
 
@@ -34,7 +37,9 @@ public class MainFrame extends JFrame {
     private final AuthService authService;
     private final PaymentService paymentService;
     private final AttendanceService attendanceService;
-    public MainFrame( CurrentSession currentSession, MemberService memberService, SubscriptionService subscriptionService, PlanDao planDao, SubscriptionDao subscriptionDao, AuthService authService, PaymentService paymentService, AttendanceService attendanceService) {
+    private final TrainerService trainerService;
+    private final MemberDao memberDao;
+    public MainFrame( CurrentSession currentSession, MemberService memberService, SubscriptionService subscriptionService, PlanDao planDao, SubscriptionDao subscriptionDao, AuthService authService, PaymentService paymentService, AttendanceService attendanceService, TrainerService trainerService, MemberDao memberDao) {
         this.authService = authService;
         this.currentSession = currentSession;
         this.memberService = memberService;
@@ -43,11 +48,12 @@ public class MainFrame extends JFrame {
         this.subscriptionDao = subscriptionDao;
         this.paymentService = paymentService;
         this.attendanceService = attendanceService;
-
+        this.trainerService = trainerService;
+        this.memberDao = memberDao;
         // Kiểm tra user đã login chưa
         if (!currentSession.isLoggedIn()) {
             JOptionPane.showMessageDialog(null, "Vui lòng đăng nhập trước!");
-            new LoginFrame(authService, currentSession, memberService,subscriptionService,planDao,subscriptionDao,paymentService,attendanceService); 
+            new LoginFrame(authService, currentSession, memberService,subscriptionService,planDao,subscriptionDao,paymentService,attendanceService,trainerService,memberDao); 
             this.dispose();
             return;
         }
@@ -88,6 +94,7 @@ public class MainFrame extends JFrame {
         cardPanel.add(new SubscriptionPanel(subscriptionService, subscriptionDao, planDao), "subscriptions");
         cardPanel.add(new PaymentPanel(paymentService), "payments");
         cardPanel.add(new AttendancePanel(attendanceService), "attendance");
+        cardPanel.add(new TrainerPanel(trainerService, memberDao), "trainers");
         add(cardPanel, BorderLayout.CENTER);
         setVisible(true);
     }
@@ -134,7 +141,7 @@ public class MainFrame extends JFrame {
         currentSession.logout();
         this.dispose();
         new LoginFrame(authService, currentSession, memberService,
-                   subscriptionService, planDao, subscriptionDao, paymentService, attendanceService);
+                   subscriptionService, planDao, subscriptionDao, paymentService, attendanceService, trainerService, memberDao);
         JOptionPane.showMessageDialog(null, "Đã logout thành công");
     }
 }

@@ -15,11 +15,13 @@ import javax.swing.JTextField;
 import javax.swing.Timer;
 
 import com.gym.attendance.AttendanceService;
+import com.gym.members.MemberDao;
 import com.gym.members.MemberService;
 import com.gym.membership.PlanDao;
 import com.gym.membership.SubscriptionDao;
 import com.gym.membership.SubscriptionService;
 import com.gym.payments.PaymentService;
+import com.gym.trainers.TrainerService;
 
 
 public class LoginFrame extends JFrame {
@@ -37,9 +39,10 @@ public class LoginFrame extends JFrame {
     private final SubscriptionDao subscriptionDao;
     private final PaymentService paymentService;
     private final AttendanceService attendanceService;
-        
+    private final TrainerService trainerService;
+    private final MemberDao memberDao;
     public LoginFrame(AuthService authService, CurrentSession currentSession,MemberService memberService,
-            SubscriptionService subscriptionService, PlanDao planDao, SubscriptionDao subscriptionDao, PaymentService paymentService, AttendanceService attendanceService) {
+            SubscriptionService subscriptionService, PlanDao planDao, SubscriptionDao subscriptionDao, PaymentService paymentService, AttendanceService attendanceService, TrainerService trainerService, MemberDao memberDao   ) {
         this.authService = authService;
         this.currentSession = currentSession;
         this.memberService = memberService;
@@ -48,6 +51,8 @@ public class LoginFrame extends JFrame {
         this.subscriptionDao = subscriptionDao;
         this.paymentService = paymentService;
         this.attendanceService = attendanceService;
+        this.trainerService = trainerService;
+        this.memberDao = memberDao;
         initUI();
     }
 
@@ -123,7 +128,7 @@ public class LoginFrame extends JFrame {
             // Chờ 1 giây rồi mở MainFrame
             Timer timer = new Timer(1000, e -> {
                 LoginFrame.this.dispose();
-                new MainFrame( currentSession, memberService, subscriptionService, planDao, subscriptionDao, authService, paymentService, attendanceService);
+                new MainFrame( currentSession, memberService, subscriptionService, planDao, subscriptionDao, authService, paymentService, attendanceService, trainerService, memberDao);
             });
             timer.setRepeats(false);
             timer.start();
